@@ -31,7 +31,7 @@
 
 ![](images/password2.PNG)
 
-8.Una vez regitrado nos logueamos
+8.Una vez registrado  nos logueamos
 
 ![](images/login.PNG)
 
