@@ -35,7 +35,7 @@
 
 ![](images/login.PNG)
 
-9.Cerrarmos en navegador y lo volvemos ha abrir y comprobamos que la cookie sigue existiendo
+9.Cerramos el navegador y lo volvemos a abrir y comprobamos que la cookie sigue existiendo
 
 ![](images/cookieCreada.PNG)
 
