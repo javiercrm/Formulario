@@ -5,6 +5,14 @@
     <title>Document</title>
 
     <script>
+
+        function guardarCookie(nombreCookie, valorCookie, diasExpirar) {
+            var fecha = new Date();
+            fecha.setTime(fecha.getTime() + (diasExpirar *24*60*60*1000));
+            var expira = "expire="+ fecha.toUTCString();
+            document.cookie = nombreCookie + "=" + valorCookie + ";" + expira + ";path=/";
+        }
+
 		
         function validar(){
 
@@ -15,7 +23,10 @@
 
                 var fecha = new Date();
 
-                document.cookie = "Usuario="+user+ "; expires=Tue, 1 Dec 2099 12:00:00 UTC";
+                document.cookie = "Usuario="+"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+                document.cookie = "Contrasena="+"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+
+                guardarCookie('Usuario', user, 365);
 
                 document.formulario1.submit();
 
@@ -31,11 +42,11 @@
     <form id="formulario1" name="formulario1" action="sesion.html" onsubmit="return false">
 	
 		<label>Usuario (OBLIGATORIO)</label>
-		<input type="text" id="User" placeholder="Apellido">
+		<input type="text" id="User" placeholder="Usuario">
         <br /><br />
 
 		<label>Contraseña (OBLIGATORIO)</label>
-		<input type="password" id="email" placeholder="Apellido">
+		<input type="password" id="email" placeholder="Pass">
         <br /><br />
 
         <input type="submit" value="Submit" onclick="validar();">

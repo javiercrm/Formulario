@@ -5,6 +5,7 @@
     <title>Document</title>
 
     <script>
+        
 		
         function validar(){
 
@@ -12,9 +13,17 @@
 
             document.cookie = user +"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
 
-            document.formulario1.submit();
+            location.href ="index.html";
 
         }
+
+        if (document.cookie == '') {
+            location.href ="index.html";
+        }
+
+        let arr = document.cookie.split('=');
+        document.write("Bienvenido usuario: "+arr[1]);
+        
 
     </script>
 
