@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script>
+		
+        function validar(){
+
+            var user = document.getElementById('User').value;
+		    var contra = document.getElementById('email').value;
+
+            if("Usuario="+user+"; Contrasena="+contra == document.cookie){
+
+                var fecha = new Date();
+
+                document.cookie = "Usuario="+user+ "; expires=Tue, 1 Dec 2099 12:00:00 UTC";
+
+                document.formulario1.submit();
+
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+    
+    <form id="formulario1" name="formulario1" action="sesion.html" onsubmit="return false">
+
+		<p id="MSGApellido" class="MSG hide">Usuario no conocido</p>
+		<label>Usuario (OBLIGATORIO)</label>
+		<input type="text" id="User" placeholder="Apellido">
+        <br /><br />
+
+		<label>Contraseña (OBLIGATORIO)</label>
+		<input type="text" id="email" placeholder="Apellido">
+        <br /><br />
+
+        <input type="submit" value="Submit" onclick="validar();">
+        
+    </form>
+
+</body>
+</html>

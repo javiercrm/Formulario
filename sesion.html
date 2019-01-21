@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script>
+		
+        function validar(){
+
+            var user = document.cookie;
+
+            document.cookie = user +"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+
+            document.formulario1.submit();
+
+        }
+
+    </script>
+
+</head>
+<body>
+    
+    <form id="formulario1" name="formulario1" action="sesion.html" onsubmit="return false">
+
+        <input type="submit" value="Cerrar Sesion" onclick="validar();">
+        
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+p.MSG{
+    background: rgba(255,0,0,0.8);
+    width: 250px;
+    padding: 5px;
+    text-align: center;
+
+}
+
+p.hide{
+    display: none;
+}
+
+p.show{
+    display: block;
+}
