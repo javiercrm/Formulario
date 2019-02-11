@@ -5,24 +5,39 @@
     <title>Document</title>
 
     <script>
-        
-		
-        function validar(){
-
-            var user = document.cookie;
-
-            document.cookie = user +"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
-
-            location.href ="index.html";
-
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+            }
+            return "";
         }
 
-        if (document.cookie == '') {
-            location.href ="index.html";
+        document.write("Bienvenido usuario: "+getCookie('UserLogueado'));
+
+    </script>
+
+    <script>
+
+        function logOut() {
+            function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 
-        let arr = document.cookie.split('=');
-        document.write("Bienvenido usuario: "+arr[1]);
+        setCookie('UserLogueado', '', 0);
+
+        window.location.replace("./login.html");
+        }
         
 
     </script>
@@ -32,7 +47,7 @@
     
     <form id="formulario1" name="formulario1" action="sesion.html" onsubmit="return false">
 
-        <input type="submit" value="Cerrar Sesion" onclick="validar();">
+        <input type="submit" value="Cerrar Sesion" onclick="logOut();">
         
     </form>
 

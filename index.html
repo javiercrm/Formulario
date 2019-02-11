@@ -31,6 +31,12 @@
 		document.getElementById("MSGSalario").className = "MSG hide";
 		document.getElementById("MSGContrasena").className = "MSG hide";
 		document.getElementById("MSGRepetirContrasena").className = "MSG hide";
+
+		function setCookie(cname, cvalue) {
+			document.cookie = cname + "=" + cvalue + ";path=/";
+		}
+
+
 		if(!expregApellidoNombre.test(apellido)){
 			document.getElementById("MSGApellido").className = "MSG show";
 			errores++;
@@ -43,10 +49,13 @@
 			document.getElementById("MSGUsuario").className = "MSG show";
 			errores++;
 		}
-		if(!expregTelefono.test(telefono)){
+		if (telefono.length > 0) {
+			if(!expregTelefono.test(telefono)){
 			document.getElementById("MSGTelefono").className = "MSG show";
 			errores++;
 		}
+		}
+		
 		if(ano < 2000){
 			document.getElementById("MSGFecha").className = "MSG show";
 			errores++;
@@ -57,6 +66,8 @@
 			document.getElementById("MSGFecha").className = "MSG show";
 			errores++;
 		}
+
+		
 		if(salario < 858.55 || salario > 12000 || Number.isNaN(salario)){
 			document.getElementById("MSGSalario").className = "MSG show";
 			errores++;
@@ -70,8 +81,8 @@
 			errores++;
 		}
 		if(errores == 0){
-			document.cookie = "Usuario="+usuario;
-			document.cookie = "Contrasena="+contrasena;
+			setCookie('Usuario', usuario);
+			setCookie('Contrasena', contrasena);
 			document.formulario1.submit();
 		}
 		
@@ -142,5 +153,6 @@
 		<input type="submit" value="Submit" onclick="validar();">
  
 	</form>
+	<a href="./login.html"><button>Login</button></a>
 </body>
 </html>

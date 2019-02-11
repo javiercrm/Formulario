@@ -3,34 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 
     <script>
 
-        function guardarCookie(nombreCookie, valorCookie, diasExpirar) {
-            var fecha = new Date();
-            fecha.setTime(fecha.getTime() + (diasExpirar *24*60*60*1000));
-            var expira = "expire="+ fecha.toUTCString();
-            document.cookie = nombreCookie + "=" + valorCookie + ";" + expira + ";path=/";
-        }
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
-		
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
         function validar(){
 
             var user = document.getElementById('User').value;
 		    var contra = document.getElementById('email').value;
 
-            if("Usuario="+user+"; Contrasena="+contra == document.cookie){
+            if(getCookie('Usuario') == user && getCookie('Contrasena') == contra){
 
-                var fecha = new Date();
-
-                document.cookie = "Usuario="+"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
-                document.cookie = "Contrasena="+"; expires=Thu, 18 Dec 2013 12:00:00 UTC";
-
-                guardarCookie('Usuario', user, 365);
+                setCookie('UserLogueado', user, 365);
 
                 document.formulario1.submit();
 
-            }
+            } else {
+                document.getElementById("incorrecto").className = "MSG show";
+		    }
+            
 
         }
 
@@ -39,6 +52,7 @@
 </head>
 <body>
     
+    <p class="hide" id="incorrecto">Usuario o contraseña no valido</p class="MSG">
     <form id="formulario1" name="formulario1" action="sesion.html" onsubmit="return false">
 	
 		<label>Usuario (OBLIGATORIO)</label>
@@ -49,9 +63,11 @@
 		<input type="password" id="email" placeholder="Pass">
         <br /><br />
 
-        <input type="submit" value="Submit" onclick="validar();">
+        <input type="submit" value="Login" onclick="validar();">
         
     </form>
+
+        <a href="./index.html"><button>Registrar</button></a>
 
 </body>
 </html>
