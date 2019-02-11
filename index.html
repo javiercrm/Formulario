@@ -32,8 +32,11 @@
 		document.getElementById("MSGContrasena").className = "MSG hide";
 		document.getElementById("MSGRepetirContrasena").className = "MSG hide";
 
-		function setCookie(cname, cvalue) {
-			document.cookie = cname + "=" + cvalue + ";path=/";
+		function setCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 		}
 
 
@@ -81,8 +84,8 @@
 			errores++;
 		}
 		if(errores == 0){
-			setCookie('Usuario', usuario);
-			setCookie('Contrasena', contrasena);
+			setCookie('Usuario', usuario, 1);
+			setCookie('Contrasena', contrasena, 1);
 			document.formulario1.submit();
 		}
 		
