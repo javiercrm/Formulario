@@ -34,7 +34,7 @@ function getCookie(cname) {
             var user = document.getElementById('User').value;
 		    var contra = document.getElementById('email').value;
 
-            if(getCookie('Usuario') == user && getCookie('Contrasena') == contra){
+            if(getCookie('Usuario') == user && getCookie('Contrasena') == contra && getCookie('Usuario') != '' && getCookie('Contrasena') != ''){
 
                 setCookie('UserLogueado', user, 365);
 
